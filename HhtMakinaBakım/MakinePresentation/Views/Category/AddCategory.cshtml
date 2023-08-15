@@ -1,0 +1,181 @@
+﻿@using MakineEntity.Entities
+@model List<AssetCategory>
+@{
+	ViewData["Title"] = "AddCategory";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+	.table td, .table th {
+		vertical-align: middle !important;
+		text-align: center !important;
+	}
+
+	.table td {
+		font-size: small !important;
+	}
+
+	.table th {
+		font-size: medium !important;
+	}
+</style>
+
+<div class="container">
+	<div class="">
+		<div class="d-flex" style="margin-bottom:-15px;">
+			<i class="fa-solid fa-magnifying-glass fa-rotate-90 fa-xl" style="margin-right: 25px; color: #112e5f;"></i>
+			<input type="text" id="searchInput" class="form-control" style="max-width:200px !important; border-radius:6px;" placeholder="Departman Ara . . .">
+		</div>
+		<form asp-controller="Category" asp-action="AddCategory" method="post" class="border p-2 ml-2" style="width:48%;">
+			<div class="form-group">
+				<label for="Name"></label>
+				<div class="d-flex">
+					<input asp-for="Name" type="text" class="form-control" id="Name" name="Name" placeholder="Yeni Kategori Adı . . ." />
+					<div class="mydict d-flex" style="margin-left: 5%;">
+						<label>
+							<input type="radio" name="IsDeleted" value="false" asp-for="IsDeleted" checked>
+							<span>Aktif</span>
+						</label>
+						<label>
+							<input type="radio" name="IsDeleted" value="true" asp-for="IsDeleted">
+							<span>Pasif</span>
+						</label>
+					</div>
+					<button style="margin-left: 5%; height:3%;" type="submit" class="btn btn-success">Oluştur</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+	<div class="col-6" style="width:50%;">
+		<table id="kt_datatable_zero_configuration" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Departmanlar</th>
+					<th>Durum</th>
+					<th>İşlemler</th>
+				</tr>
+			</thead>
+			<tbody id="userTableBody">
+				@foreach (var x in Model)
+				{
+					<tr>
+						<td> @x.Id </td>
+						<td>
+						@x.Name </td>
+							<td> @x.IsDeleted </td>
+							<td>
+							<a href="/Category/Delete/@x.Id" class="btn btn-danger btn-sm">Sil</a>
+							<button class="btn btn-sm btn-primary edit-category" data-id="@x.Id" data-name="@x.Name">Düzenle</button>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="editCategoryModalLabel">Departman Düzenle</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<input type="text" id="editedCategoryName" class="form-control" placeholder="Yeni Departman Adı...">
+				<div class="mydict justify-content-center d-flex" style="margin-top: 10px;">
+					<label>
+						<input type="radio" id="activeRadio" name="IsDeleted" value="false" checked>
+						<span>Aktif</span>
+					</label>
+					<label>
+						<input type="radio" id="inactiveRadio" name="IsDeleted" value="true">
+						<span>Pasif</span>
+					</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+				<button type="button" class="btn btn-success" id="saveEditedCategory">Kaydet</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	$(document).ready(function () {
+
+		$("#kt_datatable_zero_configuration").DataTable({
+			paging: false,
+			searching: false,
+			info: false,
+		});
+
+		const searchInput = document.getElementById('searchInput');
+		const userTableBody = document.getElementById('userTableBody');
+		const editCategoryModal = $('#editCategoryModal');
+		const editedCategoryNameInput = document.getElementById('editedCategoryName');
+		const saveEditedCategoryButton = document.getElementById('saveEditedCategory');
+
+		searchInput.addEventListener('input', () => {
+			const searchTerm = searchInput.value.toLowerCase();
+			const rows = userTableBody.getElementsByTagName('tr');
+
+			for (const row of rows) {
+				const cells = row.getElementsByTagName('td');
+				let found = false;
+
+				for (const cell of cells) {
+					if (cell.textContent.toLowerCase().includes(searchTerm)) {
+						found = true;
+						break;
+					}
+				}
+
+				row.style.display = found ? '' : 'none';
+			}
+		});
+
+		$('.edit-category').click(function () {
+			const categoryId = $(this).data('id');
+			const categoryName = $(this).data('name');
+
+			editedCategoryNameInput.value = categoryName;
+
+			saveEditedCategoryButton.addEventListener('click', () => {
+				const editedName = editedCategoryNameInput.value;
+				const isDeleted = $('input[name=IsDeleted]:checked').val();
+
+				$.ajax({
+					url: `/Category/EditCategory/${categoryId}`,
+					type: 'POST',
+					data: {
+						id: categoryId,
+						editedCategoryName: editedName,
+						isDeleted: isDeleted
+					},
+					success: function (data) {
+						// İşlem başarılıysa yapılacaklar
+						// Örneğin modalı kapat, sayfayı yenile vs.
+						editCategoryModal.modal('hide');
+						location.reload(); // Sayfayı yenile
+					},
+					error: function (xhr, status, error) {
+						// Hata durumunda yapılacaklar
+						console.error(error);
+					}
+				});
+			});
+
+			// Modalı aç
+			editCategoryModal.modal('show');
+		});
+	});
+</script>

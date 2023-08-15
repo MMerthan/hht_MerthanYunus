@@ -1,0 +1,80 @@
+﻿@{
+	ViewData["Title"] = "CreateRoutineMaintenance";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 class="text-center mt-4">Yeni Rutin Bakım Oluştur</h4>
+<div class="container mt-4" style="width:66%;">
+	<div>
+		<form class="row" asp-controller="RoutineMaintenance" asp-action="Create" method="post">
+			<div class="col-6">
+				
+
+				<div class="form-group">
+					<label asp-for="Nesne" class="control-label"></label>
+					<select asp-for="Nesne" class="form-control">
+						<option value="" disabled selected>Nesneyi Seçiniz . . .</option>
+						<option value="Bilgisayar">Bilgisayar</option>
+						<option value="İş Makinesi">İş Makinesi</option>
+						<option value="Yazıcı">Yazıcı</option>
+						<option value="Örnek Nesne 1">Örnek Nesne 1</option>
+						<option value="Örnek Nesne 2">Örnek Nesne 2</option>
+					</select>
+				</div>
+
+
+				<div class="form-group">
+					<label asp-for="SonrakiBakimTarihi" class="control-label">Rutin Başlangıç Tarihi :</label>
+					<input asp-for="SonrakiBakimTarihi" type="date" class="form-control" />
+				</div>
+				<div class="mb-3">
+					<label asp-for="RutinTekrari" class="control-label">Rutin kaç kez tekrar edecek :</label>
+					<input asp-for="RutinTekrari" type="number" class="form-control" />
+				</div>
+
+				<div class="form-group">
+					<label asp-for="RutinDongusu" class="control-label">Rutin Aralığı :</label>
+					<div class="d-flex">
+						<select style="width:120px;" asp-for="RutinDongusu" class="form-control mr-2">
+							<option value="">Seçiniz</option>
+							@for (int i = 1; i <= 31; i++)
+							{
+								<option value="@i">@i</option>
+							}
+						</select>
+						<select style="width:80px;" class="form-control" onchange="updateRutinDongusu(this)">
+							<option value="gun">Gün</option>
+							<option value="ay">Ay</option>
+							<option value="yil">Yıl</option>
+						</select>
+					</div>
+				
+				</div>
+
+			</div>
+			<div class="col-6" style="position:relative; top:-6px;">
+
+				<div class="form-group">
+					<label asp-for="IslemAciklamasi" class="control-label"></label>
+					<textarea asp-for="IslemAciklamasi" class="form-control" rows="12" placeholder="İşlem Açıklaması . . . " required></textarea>
+				</div>
+			
+
+			</div>
+		</form>
+		<button type="submit" class="btn btn-success" style="margin-left:30%;">Rutin Bakımı Oluştur</button>
+	</div>
+</div>
+<script>
+	function updateRutinDongusu(select) {
+		var selectedValue = select.value;
+		var rutinDongusuSelect = document.querySelector('#RutinDongusu');
+		if (selectedValue === 'gun') {
+			rutinDongusuSelect.name = 'RutinDongusuGun';
+		} else if (selectedValue === 'ay') {
+			rutinDongusuSelect.name = 'RutinDongusuAy';
+		} else if (selectedValue === 'yil') {
+			rutinDongusuSelect.name = 'RutinDongusuYil';
+		}
+	}
+</script>

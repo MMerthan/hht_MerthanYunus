@@ -1,0 +1,100 @@
+﻿@using MakineEntity.Entities;
+@model  List<RoutineMaintenance>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+	.table td, .table th {
+		vertical-align: middle !important;
+		text-align: center !important;
+	}
+
+	.table td {
+		font-size: small !important;
+	}
+
+	.table th {
+		font-size: medium !important;
+	}
+</style>
+
+<div class="d-flex input-group mb-3 col-5">
+	<i class="fa-solid fa-magnifying-glass fa-rotate-90 fa-xl" style="margin-right:30px; color: #112e5f;"></i>
+	<input type="text" id="searchInput" class="form-control" style="border-radius:6px;" placeholder="Arama yap..."> <h5 class="ml-5 mt-2">Rutin Bakımlar</h5>
+</div>
+<table id="kt_datatable_zero_configuration" class="table table-bordered">
+	<thead>
+		<tr>
+			<th >ID</th>
+			<th >Nesne</th>
+			<th >Departman</th>
+			<th >Rutin Başlangıç Tarihi</th>
+			<th >Son Yapılan Bakım Tarihi</th>
+			<th >Kaç Günde Bir</th>
+			<th >Rutin Döngüsü</th>
+			<th >İşlem Açıklaması</th>
+
+			<th >İşlemler</th>
+	</thead>
+	<tbody>
+		@foreach (var a in Model)
+		{
+		<tr>
+				<td>@a.Id</td>
+				<td>@a.Asset.Name</td>
+				<td>@a.Asset.AssetDepartment.Name</td>
+				<td>@a.MaintenanceTime</td>
+
+
+				<td>@a.RoutineMaintenanceDetail?.MaintenanceDate</td>
+
+				<td>@a.HowManyTimes @a.TimeName</td>
+				<td>@a.Loop kere</td>
+				<td>@a.Description @a.</td>
+			<td >
+				<a href="/RoutineMaintenance/RoutineMaintenanceUpdate" class="btn btn-sm btn-primary">Düzenle</a>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
+
+<script>
+	$(document).ready(function () {
+
+		$("#kt_datatable_zero_configuration").DataTable({
+			paging: false,
+			info: false,
+			searching: false
+		});
+	})
+	// Arama işlemini gerçekleştiren fonksiyon
+	function searchTable() {
+		var input, filter, table, tr, td, i, txtValue;
+		input = document.getElementById("searchInput");
+		filter = input.value.toUpperCase();
+		table = document.querySelector("table");
+		tr = table.getElementsByTagName("tr");
+
+		for (i = 1; i < tr.length; i++) { // Başlık satırını atlama
+			td = tr[i].getElementsByTagName("td");
+			for (var j = 0; j < td.length; j++) {
+				if (td[j]) {
+					txtValue = td[j].textContent || td[j].innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+						break;
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
+	}
+
+	// Arama kutusuna her karakter girildiğinde arama işlemini yap
+	document.getElementById("searchInput").addEventListener("keyup", searchTable);
+
+
+</script>

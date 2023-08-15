@@ -1,0 +1,153 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<title>S A B O</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="~/images/saboLogo.png" type="image/x-icon">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="~/css/style.css">
+	<link rel="stylesheet" href="~/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+	<div class="wrapper d-flex align-items-stretch">
+		<nav id="sidebar">
+			@await Component.InvokeAsync("GirisYap")
+			<div class="row mt-4 ml-4 d-flex align-items-center">
+				<a href="/home/index">
+					<img style="height:25px;margin-bottom:6px;margin-right:5px;" src="~/images/sabologo.png" /> <p style="display:inline-flex; color:white">Sabo Suspension System</p>
+				</a>
+			</div>
+			<div class="p-3 pt-1">
+
+
+				<ul class="list-unstyled components mb-5">
+					<li>
+						<a href="/home/index"><i class="fa-solid fa-house fa-lg" style="color: #f8b729;"></i> Anasayfa</a>
+					</li>
+					<li>
+						<a href="/user/index"><i class="fa-solid fa-user fa-lg" style="color: #077eb1;"></i> Kullanıcı Bilgilerim</a>
+					</li>
+					<li>
+						<a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fa-solid fa-gear fa-lg" style="color: #d0320b;"></i> Admin İşlemleri</a>
+						<ul class="collapse list-unstyled" id="adminSubmenu">
+
+							<li>
+								<a href="/user/UserList">
+									<i class="fa-solid fa-users fa-lg" style="color: #f8b739;"></i>
+									Hesapları Listele
+								</a>
+							</li>
+							<li>
+								<a href="/register/Index">
+									<i class="fa-solid fa-user-plus fa-lg" style="color: #2ee043;"></i> Hesap Oluştur
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="/Department/AddDepartment">
+							<i class="fa-solid fa-network-wired fa-lg" style="color: #676ed0;"></i>
+							Departmanlar
+						</a>
+					</li>
+					<li>
+						<a href="/Category/AddCategory">
+							<i class="fa-solid fa-timeline fa-lg" style="color: #e8e345;"></i>
+							Kategoriler
+						</a>
+					</li>
+					<li>
+						<a href="#isemirleriSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+							<i class="fa-solid fa-list-check fa-lg" style="color: #82ee2b;"></i>
+							İş Emirleri
+						</a>
+						<ul class="collapse list-unstyled" id="isemirleriSubmenu">
+							<li>
+								<a href="/WorkOrders/Index">
+									<i class="fa-regular fa-rectangle-list fa-lg" style="color: #f8b729;"></i>
+									İş Emirleri Listesi
+								</a>
+							</li>
+							<li>
+								<a href="/WorkOrders/WorkOrdersCreate">
+									<i class="fa-solid fa-circle-plus fa-lg" style="color: #30d944;"></i>
+									İş Emri Oluştur
+								</a>
+							</li>
+
+						</ul>
+					</li>
+					<li>
+						<a href="#rutinSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+							<i class="fa-solid fa-wrench fa-lg" style="color: #f1e237;"></i>
+							Rutin Bakımlar
+						</a>
+						<ul class="collapse list-unstyled" id="rutinSubmenu">
+							<li>
+								<a href="/RoutineMaintenance/Index">
+									<i class="fa-solid fa-list fa-lg" style="color: #f8b729;"></i>
+									Rutin Bakımlar Listesi
+								</a>
+							</li>
+							<li>
+								<a href="/RoutineMaintenance/RoutineMaintenanceCreate">
+									<i class="fa-regular fa-calendar-plus fa-lg" style="color: #30d944;"></i>
+									 Rutin Bakım Oluştur</a>
+							</li>
+						</ul>
+					<li>
+						<a href="#varlikSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+							<i class="fa-regular fa-object-ungroup fa-lg" style="color: #cbc7c3;"></i>
+							Varlıklar
+						</a>
+						<ul class="collapse list-unstyled" id="varlikSubmenu">
+							<li>
+								<a href="/Asset/list">
+									<i class="fa-solid fa-bars-staggered fa-lg" style="color: #f8b739;"></i>
+									Varlıklar Listesi
+								</a>
+							</li>
+							<li>
+								<a href="/Asset/create">
+									<i class="fa-regular fa-square-plus fa-lg" style="color: #30d944;"></i>
+									Varlık Oluştur
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="/Account/LogOut"><i class="fa-solid fa-right-from-bracket fa-lg" style="color: #e9e8e8;"></i> Çıkış Yap</a>
+					</li>
+				</ul>
+
+
+				<div class="footer">
+				</div>
+
+			</div>
+		</nav>
+
+		<!-- Page Content  -->
+		<div id="content" class="p-5">
+			@RenderBody()
+
+		</div>
+	</div>
+
+
+
+	<script src="~/js/popper.js"></script>
+	<script src="~/js/bootstrap.min.js"></script>
+	<script src="~/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+</body>
+</html>

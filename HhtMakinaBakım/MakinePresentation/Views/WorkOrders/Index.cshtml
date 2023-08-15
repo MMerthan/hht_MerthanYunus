@@ -1,0 +1,90 @@
+﻿@using MakineEntity.Entities
+@model List<WorkOrders>
+@{
+	ViewData["Title"] = "IsEmirleri";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+	.table td, .table th {
+		vertical-align: middle !important;
+		text-align: center !important;
+	}
+
+	.table td {
+		font-size: small !important;
+	}
+
+	.table th {
+		font-size: medium !important;
+	}
+</style>
+
+<div class="container">
+	<div class="d-flex mb-3 col-6 align-items-center justify-content-center">
+		<i class="fa-solid fa-magnifying-glass fa-rotate-90 fa-xl" style="margin-right: 10px; color: #112e5f;"></i>
+		<div class="d-flex align-items-center">
+
+			<label for="searchInput" class="form-label" style="margin-right: 10px;"></label>
+			<input type="text" class="form-control" style="border-radius:6px;" id="searchInput" placeholder="Ara...">
+		</div>
+		<h5 class="ml-5 mb-0 align-self-center">İş Emirleri Listesi</h5> 
+	</div>
+
+
+
+	<table id="kt_datatable_zero_configuration"  class="table table-bordered">
+		<thead>
+			<tr>
+				<th >No</th>
+				<th >Başlık</th>
+				<th >Personel</th>
+				<th >Açıklama</th>
+				<th >Başlangıç Tarihi</th>
+				<th >Bitiş Tarihi</th>
+				<th >Durumu</th>
+				<th >İşlem</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var x in Model)
+			{
+			<tr>
+				<td >@x.Id</td>
+				<td >@x.Name</td>
+				<td >@x.AppUser.FirstName @x.AppUser.LastName</td>
+				<td >@x.Description</td>
+				<td >@x.StartTime</td>
+				<td >@x.EndTime</td>
+				<td >@x.IsDeleted</td>
+				<td >
+						<a class="btn btn-primary btn-sm" href="/WorkOrders/WorkOrdersUpdate/@x.Id">Düzenle</a>
+				</td>
+
+			</tr>
+			}
+		</tbody>
+	</table>
+</div>
+<script>
+
+	const searchInput = document.getElementById("searchInput");
+	const rows = document.querySelectorAll("tbody tr");
+
+	searchInput.addEventListener("input", function () {
+		const searchText = searchInput.value.toLowerCase();
+
+		rows.forEach(row => {
+			const rowData = row.textContent.toLowerCase();
+			row.style.display = rowData.includes(searchText) ? "" : "none";
+		});
+	});
+	$(document).ready(function(){
+
+	$("#kt_datatable_zero_configuration").DataTable({
+			paging: false,
+			searching: false,
+			info:false,
+	});
+	})
+</script>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 style="margin-left:15%; margin-top:5%;">Kullanıcı Bilgilerini Düzenle</h4>
+<div style="width:25%; margin-left:15%; margin-top:2%;">
+    <form asp-controller="User" asp-action="UserEdit" method="post">
+        <input type="hidden" asp-for="User.Id" />
+
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" id="firstname" name="firstname" placeholder="Ad . . ." />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" id="LastName" name="LastName" placeholder="Soyad . . . " />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" id="Email" name="Email" placeholder="E-Posta Adresi . . . " />
+        </div>
+
+        <div class="form-group mb-4">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="Telefon Numarası . . . " />
+        </div>
+        <div class="mydict">
+            <div>
+                <label>
+                    <input type="radio" name="role" value="16EA936C-7A28-4C30-86A2-9A9704B6115E" asp-for="role" checked>
+                    <span>Super Admin</span>
+                </label>
+                <label>
+                    <input type="radio" name="role" value="7CB750CF-3612-4FB4-9F7D-A38BA8F16BF4" asp-for="role">
+                    <span>Admin</span>
+                </label>
+                <label>
+                    <input type="radio" name="role" value="EDF6C246-41D8-475F-8D92-41DDDAC3AEFB" asp-for="role">
+                    <span>User</span>
+                </label>
+            </div>
+
+            <button style="margin-left:23%; margin-top:12px;" type="submit" class="btn btn-success">Değişiklikleri Kaydet</button>
+    </form>
+</div>

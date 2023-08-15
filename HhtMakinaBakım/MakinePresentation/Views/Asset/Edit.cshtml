@@ -1,0 +1,50 @@
+﻿@using MakineEntity.DTOs.Assets
+@model AssetAddDto
+@{
+	ViewData["Title"] = "Edit";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 style="margin-left:15%;">Varlık Düzenleme</h4>
+<div class="container" style="width:30%; margin-left:10%;">
+	<div class="">
+		<form asp-controlle="Asset" asp-action="Edit" method="post" enctype="multipart/form-data">
+			<input type="hidden" asp-for="Id" />
+			<div class="form-group">
+				<label asp-for="Name"></label>
+				<input asp-for="Name" type="text" class="form-control" id="Name" name="Name" value="@Model.Asset.Name" placeholder="Varlık Adı . . ." />
+			</div>
+			<div class="form-group">
+				<label for="Departman"></label>
+				@Html.DropDownListFor(model => model.Asset.AssetDepartmentId, new SelectList(Model.Departments, "Id", "Name"), "Departman Seçin", new { @class = "form-control", id = "Department" })
+			</div>
+			<div class="form-group">
+				<label for="AssetCategory"></label>
+				@Html.DropDownListFor(model => model.Asset.AssetCategoryId, new SelectList(Model.AssetCategories, "Id", "Name"), "Kategori Seçin", new { @class = "form-control", id = "AssetCategory" })
+			</div>
+			<div class="form-group">
+				<label asp-for="Description"></label>
+				<textarea asp-for="Description" class="form-control" value="@Model.Asset.Description" id="Description" name="Description" placeholder="Açıklama . . ." rows="3"></textarea>
+			</div>
+			<div class="form-group">
+				<div class="mydict">
+					<div>
+						<label>
+							<input type="radio" name="IsDeleted" value="true"  asp-for="IsDeleted" checked>
+							<span>Aktif</span>
+						</label>
+						<label>
+							<input type="radio" name="IsDeleted" value="false" asp-for="IsDeleted">
+							<span>Pasif</span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center">
+				<button type="submit" class="mr-3 btn btn-success">Düzenlemeyi Kaydet</button>
+				<a href="/asset/Delete?id=@Model.Asset.Id" class="btn btn-danger">Varlığı Sil</a>
+			</div>
+		</form>
+		
+	</div>
+</div>
+

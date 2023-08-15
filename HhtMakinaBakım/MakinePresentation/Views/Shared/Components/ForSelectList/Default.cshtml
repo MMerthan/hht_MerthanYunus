@@ -1,0 +1,14 @@
+﻿@using MakineEntity.Entities
+@model IEnumerable<AppUser>
+
+<div class="mb-3">
+    <label for="AppUserId"></label>
+    <select class="form-control" name="AppUserId">
+        <option value="" disabled selected>Personeli Seçin</option>
+        @foreach (var x in Model)
+        {
+            <option value="@x.Id">@x.FirstName @x.LastName</option>
+        }
+
+    </select>
+</div>

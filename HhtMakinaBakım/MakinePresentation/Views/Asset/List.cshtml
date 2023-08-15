@@ -1,0 +1,149 @@
+﻿@using MakineEntity.Entities
+@model List<Asset>
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table td, .table th {
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+
+    .table td {
+        font-size: small !important;
+    }
+
+    .table th {
+        font-size: medium !important;
+    }
+</style>
+
+<div class="container">
+    <div class="d-flex justify-content-start align-items-center w-100 mb-3">
+        <i class="fa-solid fa-magnifying-glass fa-rotate-90 fa-xl" style="margin-right: 10px; color: #112e5f;"></i>
+        <input type="text" id="searchInput" class="form-control" style="max-width:200px !important; border-radius:6px;" placeholder="Arama...">
+        <h5 class="ml-5 mb-0">Varlık Listesi</h5>
+    </div>
+    <table id="kt_datatable_zero_configuration" class="table table-bordered">
+        <thead>
+            <tr>
+                <th >ID</th>
+                <th >Varlık Adı</th>
+                <th >Departman</th>
+                <th >Kategori</th>
+                <th >Açıklama</th>
+                <th >Resim</th>
+                <th >Statüsü</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody id="varlikTableBody">
+            @foreach(var x in Model)
+            {
+                <tr>
+                    <td>@x.Id</td>
+                    <td>@x.Name</td>
+                    <td>@x.AssetDepartment.Name</td>
+                    <td>@x.AssetCategory.Name</td>
+                    <td>@x.Description</td>
+                    <td><button class="btn btn-secondary" onclick="showImage(@x.Id)" >Göster</button></td>
+                    <td>@x.IsDeleted</td>
+                    <td><a href="/Asset/edit/@x.Id" class="btn btn-sm btn-primary">Düzenle</a></td>
+                   
+                </tr>
+            }
+           
+        </tbody>
+
+    </table>
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Varlık Resmi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modalImageContainer">
+                    <img id="modalImage" src="~/img/" alt="Varlık Resmi" style="max-width: 100%;" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#kt_datatable_zero_configuration").DataTable({
+            paging: false,
+            searching: false,
+            info: false,
+        });
+
+        // Show the image in the modal when the "Göster" button is clicked
+        $('.show-image-btn').on('click', function () {
+            alert(1);
+            const assetId = $(this).data('assetid');
+            $.ajax({
+                url: '/asset/getimage',
+                type: 'GET',
+                data: { id: assetId },
+                dataType: 'text', 
+                success: function (result) {
+                    $('#modalImage').attr('src', result);
+                    $('#imageModal').modal('show');
+                }
+            });
+        });
+
+        // Rest of the code remains unchanged
+        const searchInput = document.getElementById('searchInput');
+        const varlikTableBody = document.getElementById('varlikTableBody');
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const rows = varlikTableBody.getElementsByTagName('tr');
+
+            for (const row of rows) {
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+
+                for (const cell of cells) {
+                    if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                row.style.display = found ? '' : 'none';
+            }
+        });
+    });
+    function showImage(id){
+        $.ajax({
+            url: '/asset/getimage',
+            type: 'GET',
+            data: { id: id },
+            dataType: 'text',
+            success: function (result) {
+                if (result !== "") {
+                    $('#modalImage').attr('src', result);
+                    $('#imageModal').modal('show');
+                }
+                else {
+                    //boş
+                }
+            }
+        });
+    }
+</script>
+

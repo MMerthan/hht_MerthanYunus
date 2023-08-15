@@ -1,0 +1,86 @@
+﻿@using MakineEntity.DTOs.Users
+@model IEnumerable<UserAddDto>
+
+@{
+	ViewData["Title"] = "Register";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container mt-5" style="">
+	<div class="row">
+		<div class="col-md-6 offset-1">
+			<div>
+				<form asp-controller="Register" asp-action="Index" method="post" enctype="multipart/form-data">
+					<div class="mb-1 col-8">
+						<label asp-for="FirstName" class="form-label"></label>
+						<input asp-for="FirstName" type="text" class="form-control" id="firstname" name="firstname" placeholder="Ad" required>
+					</div>
+					<div class="mb-1 col-8">
+						<label asp-for="LastName" class="form-label"></label>
+						<input asp-for="LastName" type="text" class="form-control" id="lastname" name="lastname" placeholder="Soyad" required>
+					</div>
+					<div class="mb-1 col-8">
+						<label asp-for="Email" class="form-label"></label>
+						<input asp-for="Email" type="email" class="form-control" id="email" name="email" placeholder="E-posta" required>
+					</div>
+					<div class="mb-1 col-8">
+						<label asp-for="PhoneNumber" class="form-label"></label>
+						<input asp-for="PhoneNumber" type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Telefon Numarası" required>
+					</div>
+					<div class="mb-3 col-8">
+						<label asp-for="Password" class="form-label"></label>
+						<div class="input-group">
+							<input asp-for="Password" type="password" class="form-control" id="password" name="password" placeholder="Parola" required>
+							<button type="button" class="btn btn-outline-secondary ml-2" id="showPasswordButton">
+								<i class="fa fa-eye"></i>
+							</button>
+						</div>
+					</div>
+
+					<div class="mb-3 col-7">
+						<div class="mydict">
+							<div>
+								<label>
+									<input type="radio" name="role" value="Superadmin" asp-for="role" checked>
+									<span>Super Admin</span>
+								</label>
+								<label>
+									<input type="radio" name="role" value="Admin" asp-for="role">
+									<span>Admin</span>
+								</label>
+								<label>
+									<input type="radio" name="role" value="User" asp-for="role">
+									<span>User</span>
+								</label>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="d-flex ml-5">
+						<button type="submit" class="btn btn-primary offset-2" style="display:inline-flex;">Devam Et</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const passwordInput = document.getElementById("password");
+		const showPasswordButton = document.getElementById("showPasswordButton");
+
+		showPasswordButton.addEventListener("click", function () {
+			if (passwordInput.type === "password") {
+				passwordInput.type = "text";
+				showPasswordButton.innerHTML = '<i class="fa fa-eye-slash"></i>';
+			} else {
+				passwordInput.type = "password";
+				showPasswordButton.innerHTML = '<i class="fa fa-eye"></i>';
+			}
+		});
+	});
+</script>

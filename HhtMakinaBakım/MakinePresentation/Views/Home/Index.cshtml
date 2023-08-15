@@ -1,0 +1,73 @@
+﻿@using MakineEntity.Entities;
+@model List<WorkOrders>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.js"></script>
+<div id="kt_docs_fullcalendar_selectable"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("kt_docs_fullcalendar_selectable");
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,timeGridWeek,timeGridDay"
+            },
+            initialDate: "@DateTime.Now.ToString("yyyy-MM-dd")",
+            locale: "tr",
+            navLinks: true,
+            selectable: true,
+            selectMirror: true,
+
+            select: function (arg) {
+                // ... (select function remains unchanged)
+            },
+
+            eventClick: function (arg) {
+                // ... (eventClick function remains unchanged)
+            },
+
+            editable: true,
+            dayMaxEvents: true,
+            events: [
+    @foreach (var x in Model)
+    {
+        <text>{
+                        title: "@x.Name",
+                        start: "@x.StartTime.ToString("yyyy-MM-dd")",
+            @if (x.EndTime != null)
+                {
+                <text>end: "@x.EndTime.Value.ToString("yyyy-MM-dd")",</text>
+                }
+                else
+                {
+                <text>end: null,</text>
+                }
+                    }, </text>
+    }
+    //  for(var x = 0; x <= Loop; x++)
+    // {
+        // <text>{
+        //             title: "x.Name",
+        //             start: "x.StartTime.ToString/* ("yyyy-MM-dd") */",
+            // if (x.EndTime != null)
+            // {
+            //     <text>end: "x.EndTime.Value.ToString/* ("yyyy-MM-dd") */", </text>
+            // }
+            // else
+            // {
+            //     <text>end: null, </text>
+            // }
+    //                         }, </text>
+    // }
+            ]
+        });
+
+        calendar.render();
+    });
+</script>

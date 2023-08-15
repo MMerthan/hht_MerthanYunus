@@ -1,0 +1,101 @@
+﻿@using MakineEntity.DTOs.WorkOrder;
+
+
+@{
+    ViewData["Title"] = "isEmriDuzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WorkOrdersUpdateDto
+
+
+<div class="container mt-5 d-flex flex-column">
+    <h5 style="margin-left:14%;">İş Emrini Düzenle</h5>
+    <form style="width:30%; margin-left:8%;" method="post" asp-controller="WorkOrders" asp-action="WorkOrders/WorkOrdersUpdate">
+        <input type="hidden" asp-for="Id" />
+        @await Component.InvokeAsync("ForSelectList")
+        <input type="hidden" name="Id" value="@Model.workOrders.Id"/>
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" value="Description" class="form-control" name="Description" rows="7" placeholder="">@Model.workOrders.Description</textarea>
+        </div>
+
+        <div class="d-flex justify-content-center" style="margin-left:13%;width:200px;">
+            <label asp-for="EndTime" class="form-label">Bitiş Tarihi :</label>
+            <input asp-for="EndTime" name="EndTime" class="form-control" type="date" value="@Model.workOrders.EndTime"/>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="mydict">
+                <div>
+                    <label>
+                        <input type="radio" name="IsDeleted" value="false" asp-for="IsDeleted" checked>
+                        <span>Aktif</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="IsDeleted" value="true" asp-for="IsDeleted">
+                        <span>Pasif</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            <button type="submit" class="btn btn-success">Değişiklikleri Kaydet</button>
+            <button type="button" class="btn btn-danger ml-3" data-toggle="modal" data-target="#deleteConfirmationModal" data-id="@Model.workOrders.Id">İş Emrini Sil</button>
+
+        </div>
+    </form>
+</div>
+
+
+<!-- Modal for Delete Confirmation -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">İş Emrini Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>İş emrini silmek istediğinizden emin misiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        var deleteId = null; // Variable to store the ID of the item to be deleted
+
+        // Sil butonuna tıklanınca onay modalını aç
+        $('#deleteConfirmationModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            deleteId = button.data('id'); // Get the ID from the data-id attribute
+        });
+
+        $('#confirmDelete').on('click', function () {
+            // Perform the delete action
+            $.ajax({
+                url: '/WorkOrders/Delete/' + deleteId, // Adjust the URL as needed
+                type: 'POST',
+                success: function (result) {
+                    if (result.success) {
+                        // You can handle the success here, like updating the UI or redirecting
+                     
+                        window.location.href = '/WorkOrders/Index';
+                    }
+                },
+                error: function (error) {
+                    // Handle error if necessary
+                }
+            });
+        });
+    });
+</script>
+

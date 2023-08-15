@@ -1,0 +1,48 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<link rel="icon" href="~/images/saboLogo.png" type="image/x-icon">
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<link href="~/LoginCss/stylesheet.css" rel="stylesheet" />
+	<title>SABO | Giriş</title>
+</head>
+<body>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
+
+	<div class="sidenav">
+		<div class="d-flex justify-content-center">
+			<img style="margin-top:190px;margin-bottom:31px; height: 11em;" src="~/images/saboLogo.png" />
+		</div>
+		<h2 style="text-align: center; color: white;">SABO<br>Suspension System</h2>
+	</div>
+
+
+	<div class="main">
+		<div class="col-md-5 col-sm-12" style="top:-2px;">
+			<div class="login-form">
+				<form asp-controller="Login" asp-action="Index" method="post">
+					<div class="form-group">
+						<label asp-for ="Email" for="email"></label>
+						<input asp-for="Email" type="email" class="form-control" name="Email" placeholder="E-Posta Adresiniz . . ." required>
+					</div>
+					<div class="form-group">
+						<label asp-for="Password" for="password"></label>
+						<input asp-for="Password" type="password" name="password" class="form-control" placeholder="Parolanız . . ." required>
+					</div>
+					<button type="submit" class="btn btn-secondary" style="background-color:#1D1919">Giriş Yap</button>
+					<button type="button" class="btn btn-secondary">Şifremi Unuttum</button>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿@using MakineEntity.Entities
+@model IEnumerable<AppUser>
+@{
+    ViewData["Title"] = "isEmriOlustur";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <!-- Satırı ortalamak için -->
+        <div class="col-sm-6">
+            <!-- Büyük ekranlarda yarısı genişliğinde -->
+            <h5 class="text-center">Yeni İş Emri Oluştur</h5>
+            <form asp-controller="WorkOrders" asp-action="WorkOrdersCreate" method="post">
+                <div class="mb-3">
+                    <label for="AppUserId"></label>
+                    <select class="form-control" id="AppUserId" name="AppUserId">
+                        <option value="" disabled selected>Personeli Seçin</option>
+                        @foreach(var x in Model)
+                        {
+                            <option value="@x.Id">@x.FirstName @x.LastName</option>
+                        }
+                       
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" id="Name" name="Name" class="form-control" placeholder="İş Emri Başlığı . . ." required />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea asp-for="Description" id="Description" name="Description" class="form-control" rows="5" placeholder="Açıklama . . . " required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="StartDate" class="form-label">Başlangıç Tarihi:</label>
+                    <input asp-for="StartDate" id="StartDate" name="StartTime" type="date" class="form-control" required />
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success" id="submitButton">Emri Oluştur</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <p>İş Emri Oluşturuldu</p>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Tamam</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const submitButton = document.getElementById("submitButton");
+        const successModal = new bootstrap.Modal(document.getElementById("successModal"));
+
+        submitButton.addEventListener("click", function () {
+            if (document.querySelector("form").checkValidity()) {
+                successModal.show();
+            }
+        });
+    });
+</script>

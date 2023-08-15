@@ -1,0 +1,73 @@
+﻿@using MakineEntity.DTOs.Assets
+@model AssetAddDto
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row " style="margin-left:12%; margin-top:2%;">
+	<div class="col-4">
+		<form asp-controller="AssetController" asp-action="Create" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<label asp-for="Name"></label>
+				<input asp-for="Name" type="text" class="form-control" id="Name" name="Asset.Name" placeholder="Varlık Adı . . ." />
+			</div>
+			<div class="form-group">
+				<label for="Departman"></label>
+				@Html.DropDownListFor(model => model.Asset.AssetDepartmentId, new SelectList(Model.Departments, "Id", "Name"), "Departman Seçin", new { @class = "form-control", id = "Department" })
+			</div>
+
+			<div class="form-group">
+				<label for="AssetCategory"></label>
+				@Html.DropDownListFor(model => model.Asset.AssetCategoryId, new SelectList(Model.AssetCategories, "Id", "Name"), "Kategori Seçin", new { @class = "form-control", id = "AssetCategory" })
+			</div>
+			<div class="form-group">
+				<label asp-for="Description"></label>
+				<textarea asp-for="Description" class="form-control" id="Description" name="Asset.Description" placeholder="Açıklama . . ." rows="3"></textarea>
+			</div>
+			<div class="form-group">
+			
+				<input type="file" class="form-control" id="fileInput" name="Image" accept="image/*">
+			</div>
+			<div class="form-group">
+				<div class="mydict">
+					<div>
+						<label>
+							<input type="radio" name="IsDeleted" value="false" asp-for="IsDeleted" checked>
+							<span>Aktif</span>
+						</label>
+						<label>
+							<input type="radio" name="IsDeleted" value="true" asp-for="IsDeleted">
+							<span>Pasif</span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<div style="margin-left:88px;">
+				<button type="submit" class="btn btn-success">Varlığı Oluştur</button>
+			</div>
+		</form>
+	</div>
+	<div class="col-6 d-flex" style="height:231px; margin-right: 12%; margin-top: 2%; " id="imagePreview">
+		<img src="" id="previewImage" />
+	</div>
+</div>
+
+
+<script>
+	const fileInput = document.getElementById('Resim');
+	const imagePreview = document.getElementById('imagePreview');
+	const previewImage = document.getElementById('previewImage');
+
+	fileInput.addEventListener('change', function () {
+		const file = fileInput.files[0];
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = function (e) {
+				previewImage.src = e.target.result;
+				imagePreview.style.display = 'flex';
+			};
+			reader.readAsDataURL(file);
+		}
+	});
+</script>

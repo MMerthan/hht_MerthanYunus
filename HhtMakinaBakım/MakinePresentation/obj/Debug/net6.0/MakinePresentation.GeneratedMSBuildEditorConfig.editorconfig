@@ -1,0 +1,109 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MakinePresentation
+build_property.RootNamespace = MakinePresentation
+build_property.ProjectDir = C:\Users\MerthanKarakaya\Desktop\HhtMakinaBakım\MakinePresentation\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = C:\Users\MerthanKarakaya\Desktop\HhtMakinaBakım\MakinePresentation
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Asset/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzZXRcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Asset/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzZXRcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Asset/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzZXRcTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Category/AddCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQWRkQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Department/AddDepartment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudFxBZGREZXBhcnRtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Register/ImageUpload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcSW1hZ2VVcGxvYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Register/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/RoutineMaintenance/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGluZU1haW50ZW5hbmNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/RoutineMaintenance/RoutineMaintenanceCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGluZU1haW50ZW5hbmNlXFJvdXRpbmVNYWludGVuYW5jZUNyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/RoutineMaintenance/RoutineMaintenanceUpdate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGluZU1haW50ZW5hbmNlXFJvdXRpbmVNYWludGVuYW5jZVVwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Shared/Components/ForSelectList/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcRm9yU2VsZWN0TGlzdFxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Shared/Components/GirisYap/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcR2lyaXNZYXBcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Shared/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WaWV3SW1wb3J0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/Shared/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/User/UserEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVc2VyRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/User/UserList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVc2VyTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/WorkOrders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/WorkOrders/WorkOrdersCreate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyc1xXb3JrT3JkZXJzQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MerthanKarakaya/Desktop/HhtMakinaBakım/MakinePresentation/Views/WorkOrders/WorkOrdersUpdate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya09yZGVyc1xXb3JrT3JkZXJzVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
